@@ -1,0 +1,52 @@
+---
+title: "Synchronous & Asynchronous Buck Converter Design"
+publishedAt: "2024-06-01"
+summary: "Design and simulation of both synchronous (MOSFET-based) and asynchronous (diode-based) buck converters for efficient DC/DC step-down power conversion."
+images:
+  - "/images/projects/project-01/synch buck.jpg"
+team:
+  - name: "Ali Nemer Monzer"
+    role: "Power Electronics Engineer"
+    avatar: "/images/i.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ali-monzer-5b9635282"
+---
+
+## Overview
+
+This project covers the full design and simulation cycle of both asynchronous (diode-based) and synchronous (MOSFET-based) buck converters. The buck converter is a fundamental DC/DC step-down topology widely used in power supplies, battery chargers, and embedded systems. Both variants were designed, analyzed, and validated through simulation to compare efficiency, switching behavior, and output ripple characteristics.
+
+## Asynchronous Buck Converter
+
+The asynchronous variant uses a power MOSFET as the high-side switch and a freewheeling diode as the low-side element. While simpler to implement, the diode's forward voltage drop introduces conduction losses that reduce overall efficiency, particularly at higher load currents.
+
+**Key design steps:**
+- Selection of switching frequency, inductor, and output capacitor values using steady-state design equations
+- Calculation of duty cycle for the desired voltage conversion ratio
+- Simulation of switch node voltage, inductor current waveforms, and output ripple
+
+## Synchronous Buck Converter
+
+The synchronous variant replaces the freewheeling diode with a low-side MOSFET controlled with complementary gate signals. This eliminates diode conduction losses, significantly improving efficiency — a critical advantage in high-current or battery-powered applications.
+
+**Key design steps:**
+- Complementary gate drive timing with dead-time insertion to prevent shoot-through
+- Efficiency comparison against the asynchronous topology at various load conditions
+- Analysis of body diode conduction during dead time
+
+## Simulation & Analysis
+
+Both converters were simulated in **LTspice**, covering:
+- Steady-state output voltage and current waveforms
+- Inductor current in continuous conduction mode (CCM) and discontinuous conduction mode (DCM)
+- Output voltage ripple vs. switching frequency and capacitor size trade-offs
+- Transient load step response
+
+## Technologies Used
+
+- **LTspice** — Primary simulation environment for waveform analysis and component selection validation
+- **PLECS** — Secondary simulation for efficiency mapping and thermal estimation
+- **MATLAB** — Design equation calculations and duty cycle sweep analysis
+
+## Key Takeaways
+
+The synchronous topology demonstrated notably higher efficiency at medium to high load currents, validating its preference in modern power converter ICs. The asynchronous design, while less efficient, offers simpler control and is preferable in low-power or cost-sensitive applications.

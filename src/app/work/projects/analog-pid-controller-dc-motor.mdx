@@ -1,0 +1,57 @@
+---
+title: "Analog PID Controller Implementation for DC Motor"
+publishedAt: "2024-11-01"
+summary: "Hardware implementation of a fully analog PID controller using operational amplifiers for closed-loop speed and position control of a DC motor."
+images:
+  - "/images/projects/project-01/pid-controller-repair.jpg"
+team:
+  - name: "Ali Nemer Monzer"
+    role: "Control Systems Engineer"
+    avatar: "/images/y.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ali-monzer-5b9635282"
+---
+
+## Overview
+
+This project involves the design and implementation of a fully analog Proportional-Integral-Derivative (PID) controller for closed-loop control of a DC motor. Rather than relying on a microcontroller or digital processor, the control law is realized entirely in hardware using operational amplifier circuits — demonstrating the fundamentals of continuous-time control theory applied directly in electronics.
+
+## Motivation
+
+Analog PID controllers remain relevant in high-speed or noise-sensitive control applications where digital sampling latency is undesirable. Implementing the controller in analog hardware provides valuable insight into the direct relationship between circuit parameters (resistors and capacitors) and PID gain tuning.
+
+## Controller Architecture
+
+The PID controller is constructed from three op-amp stages combined at a summing amplifier:
+
+- **Proportional (P) stage** — An inverting amplifier whose gain sets the proportional gain Kp
+- **Integral (I) stage** — An integrator circuit (op-amp with capacitive feedback) that eliminates steady-state error
+- **Derivative (D) stage** — A differentiator circuit with a series resistor to limit high-frequency noise amplification
+- **Summing amplifier** — Combines the three control outputs with configurable weights
+
+## Design & Tuning
+
+**Component selection:**
+- RC time constants in each stage directly map to Ti (integral time) and Td (derivative time)
+- Gain resistors set the proportional band
+- Anti-windup considerations addressed through output saturation limiting
+
+**Tuning methodology:**
+- Initial gains estimated from Ziegler–Nichols method
+- Fine-tuned through simulation by observing step response (rise time, overshoot, settling time)
+
+## Simulation
+
+The full closed-loop system — including motor model (armature resistance, inductance, back-EMF) and PID controller — was simulated in **OrCAD PSpice** and **Multisim**:
+- Step reference tracking response
+- Disturbance rejection under load torque steps
+- Steady-state error elimination with integral action
+
+## Technologies Used
+
+- **OrCAD PSpice** — Full analog circuit simulation
+- **Multisim** — Cross-verification and op-amp behavior analysis
+- **MATLAB** — Control system analysis (Bode plots, root locus, step response)
+
+## Key Takeaways
+
+The project demonstrated how control theory translates directly into analog circuit design. The integral term successfully eliminated steady-state error, while derivative action improved transient response — at the cost of sensitivity to noise, highlighting the importance of the derivative filter resistor.

@@ -1,0 +1,50 @@
+---
+title: "DC/AC Converter Design using Center-Tapped Transformer"
+publishedAt: "2024-09-01"
+summary: "Design and simulation of a DC/AC power inverter using a center-tapped transformer topology, converting DC input to a regulated AC output."
+images:
+  - "/images/projects/project-01/center tapped.jpg"
+team:
+  - name: "Ali Nemer Monzer"
+    role: "Power Electronics Engineer"
+    avatar: "/images/centertapped.jpg"
+    linkedIn: "https://www.linkedin.com/in/ali-monzer-5b9635282"
+---
+
+## Overview
+
+This project covers the design and simulation of a DC-to-AC power inverter based on a center-tapped transformer topology. This inverter architecture is commonly used in uninterruptible power supplies (UPS), DC-coupled renewable energy systems, and offline power conversion where galvanic isolation between the DC source and AC load is required.
+
+## Topology Description
+
+The center-tapped transformer inverter operates by alternately switching two transistors connected to either half of the transformer primary winding. This push-pull arrangement drives current through each half of the primary in alternating directions, inducing a sinusoidal (or quasi-sinusoidal) AC voltage on the secondary.
+
+**Key characteristics:**
+- Provides galvanic isolation between DC source and AC output
+- Simpler gate drive circuitry compared to full-bridge topologies (no floating gate drives required)
+- Transformer turns ratio sets the voltage step-up or step-down ratio
+
+## Design Steps
+
+1. **Transformer design** — Selection of turns ratio, core material, and winding configuration for the center-tapped primary and secondary
+2. **Switch selection** — Power MOSFETs rated for peak voltage stress (twice the input voltage across the off-state switch)
+3. **Gate drive design** — Complementary switching signals with dead-time to prevent simultaneous conduction
+4. **Output filter** — LC filter on the secondary side to attenuate harmonics and deliver clean AC output
+
+## Simulation & Analysis
+
+The converter was simulated in **LTspice** and **Multisim** covering:
+- Primary and secondary voltage and current waveforms
+- Voltage stress on switching devices (2× Vdc)
+- Output AC waveform quality and harmonic content
+- Efficiency under various load conditions
+
+## Technologies Used
+
+- **LTspice** — Primary simulation environment
+- **Multisim** — Cross-verification of switching waveforms
+- **MATLAB** — Harmonic analysis of output waveform
+
+## Key Takeaways
+
+The center-tapped topology provides a practical balance between circuit simplicity and performance for medium-power isolated inverter applications. The voltage stress of twice the input voltage on each switch is the primary design constraint that dictates MOSFET selection and snubber circuit requirements.

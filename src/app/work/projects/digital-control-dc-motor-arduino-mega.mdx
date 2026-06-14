@@ -1,0 +1,55 @@
+---
+title: "Digital Control for DC Motor using Arduino Mega"
+publishedAt: "2025-01-01"
+summary: "Implementation of a digital PID controller on an Arduino Mega microcontroller for real-time closed-loop speed control of a DC motor using PWM and encoder feedback."
+images:
+  - "/images/projects/project-01/motor.jpg"
+team:
+  - name: "Ali Nemer Monzer"
+    role: "Embedded Systems & Control Engineer"
+    avatar: "/images/x.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ali-monzer-5b9635282"
+---
+
+## Overview
+
+This project implements a digital PID (Proportional-Integral-Derivative) controller on an **Arduino Mega 2560** microcontroller for real-time closed-loop speed control of a DC motor. Unlike the analog PID implementation, this approach leverages the microcontroller's processing capabilities to enable flexible, software-configurable control with encoder-based feedback, PWM drive output, and serial monitoring.
+
+## System Architecture
+
+The control system consists of four main components:
+
+1. **Sensor (Encoder)** — Quadrature encoder attached to the DC motor shaft provides real-time speed and position feedback via pulse counting
+2. **Controller (Arduino Mega)** — Executes the discrete-time PID algorithm at a fixed sampling rate, computing the control output from the error signal
+3. **Actuator (H-Bridge + Motor)** — PWM signal from the Arduino drives an H-bridge motor driver, controlling motor speed and direction
+4. **Feedback Loop** — Error between setpoint and measured speed is continuously minimized by the PID algorithm
+
+## Digital PID Implementation
+
+The discrete-time PID controller is implemented using the position form of the difference equation:
+
+- **Proportional term**: Kp × e(k)
+- **Integral term**: accumulated sum of errors multiplied by Ki and sample time Ts
+- **Derivative term**: difference of consecutive errors divided by Ts, scaled by Kd
+- **Anti-windup**: integral term clamped to prevent windup during actuator saturation
+
+**Sampling and timing:**
+- Fixed interrupt-based sampling ensures consistent control loop timing
+- Timer interrupt used for both encoder reading and PID computation
+
+## Features
+
+- Real-time speed setpoint adjustment via serial interface
+- PWM duty cycle output (0–100%) mapped to motor speed
+- Live serial monitor output of setpoint, measured speed, and PWM duty cycle
+- Configurable PID gains through serial commands for in-system tuning
+
+## Technologies Used
+
+- **Arduino Mega 2560** — Microcontroller platform
+- **Arduino IDE / C++** — Firmware development
+- **MATLAB** — Step response analysis and gain tuning verification
+
+## Key Takeaways
+
+The project demonstrated the practical implementation of digital control theory on a real embedded system. Sampling rate selection proved critical — too low a rate introduced control lag, while excessively high rates amplified encoder noise in the derivative term. The final tuned system achieved smooth speed tracking with minimal overshoot.

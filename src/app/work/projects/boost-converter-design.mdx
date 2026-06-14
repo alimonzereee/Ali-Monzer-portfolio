@@ -1,0 +1,51 @@
+---
+title: "Boost Converter Design"
+publishedAt: "2024-03-01"
+summary: "Design and simulation of a DC/DC boost converter for step-up power conversion, with analysis of steady-state and transient performance."
+images:
+  - "/images/projects/project-01/boost.jpg"
+team:
+  - name: "Ali Nemer Monzer"
+    role: "Power Electronics Engineer"
+    avatar: "/images/ii.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ali-monzer-5b9635282"
+---
+
+## Overview
+
+This project involves the design and simulation of a DC/DC boost (step-up) converter. The boost converter is an essential power electronics topology used in applications such as battery-powered systems, LED drivers, photovoltaic (PV) maximum power point tracking (MPPT), and renewable energy interfaces where the output voltage must exceed the input voltage.
+
+## Design Approach
+
+The converter was designed from first principles, starting with the derivation of the voltage conversion ratio and component selection based on ripple and efficiency requirements.
+
+**Design specifications:**
+- Input voltage range: defined for intended application
+- Output voltage: step-up ratio determined by duty cycle
+- Switching frequency: selected to balance switching losses and passive component size
+- Inductor and capacitor sizing: derived from ripple current and voltage specifications
+
+## Operating Modes
+
+Both **Continuous Conduction Mode (CCM)** and **Discontinuous Conduction Mode (DCM)** were analyzed:
+
+- **CCM**: Inductor current never reaches zero; provides lower peak currents and better regulation
+- **DCM**: Occurs at light loads; introduces non-linear voltage gain dependence on load
+- Boundary condition between CCM and DCM was calculated and verified in simulation
+
+## Simulation & Analysis
+
+The converter was fully simulated in **LTspice** with the following analyses performed:
+- Steady-state inductor current and output voltage waveforms
+- Switch node voltage and diode voltage stress analysis
+- Output voltage regulation under varying duty cycles
+- Transient response to step changes in input voltage and load current
+
+## Technologies Used
+
+- **LTspice** — Circuit simulation and waveform analysis
+- **MATLAB** — Duty cycle and component value calculations, efficiency curves
+
+## Key Takeaways
+
+The project reinforced the non-inverting voltage step-up behavior of the boost topology and highlighted the trade-off between switching frequency, passive component size, and efficiency. The results aligned closely with theoretical predictions, confirming the validity of the design methodology.

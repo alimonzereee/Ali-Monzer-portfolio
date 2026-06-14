@@ -1,0 +1,60 @@
+---
+title: "Single & Three Phase Inverter Simulation using SPWM"
+publishedAt: "2025-03-01"
+summary: "Simulation of single-phase and three-phase voltage source inverters controlled via Sinusoidal Pulse Width Modulation (SPWM) for AC power generation and motor drives."
+images:
+  - "/images/projects/project-01/pp.jpg"
+team:
+  - name: "Ali Nemer Monzer"
+    role: "Power Electronics Engineer"
+    avatar: "/images/avatar2.jpeg"
+    linkedIn: "https://www.linkedin.com/in/ali-monzer-5b9635282"
+---
+
+## Overview
+
+This project covers the simulation of both single-phase and three-phase voltage source inverters (VSI) using **Sinusoidal Pulse Width Modulation (SPWM)**. SPWM is the industry-standard modulation technique for producing high-quality AC output from a DC source, and is fundamental to variable frequency drives (VFDs), grid-tied inverters, and renewable energy power conversion systems.
+
+## Sinusoidal PWM Principle
+
+SPWM generates switching signals by comparing a sinusoidal reference waveform (at the desired output frequency) with a high-frequency triangular carrier waveform. When the reference exceeds the carrier, the upper switch conducts; otherwise, the lower switch conducts. This produces a PWM output whose fundamental frequency component is the desired AC sine wave.
+
+**Key parameters:**
+- **Modulation index (ma)** — Ratio of reference to carrier amplitude; controls output voltage magnitude
+- **Frequency ratio (mf)** — Ratio of carrier to reference frequency; affects harmonic spectrum
+- **Total Harmonic Distortion (THD)** — Primary quality metric of the output waveform
+
+## Single-Phase Full-Bridge Inverter
+
+The single-phase H-bridge (four-switch full bridge) was simulated with bipolar and unipolar SPWM schemes:
+
+- **Bipolar SPWM**: Two switch pairs operate complementarily; simple but produces higher ripple
+- **Unipolar SPWM**: Switches operate with phase-shifted carriers; reduces output voltage ripple and improves THD
+- Output filtered with an LC low-pass filter to extract the fundamental sine wave
+
+## Three-Phase Inverter
+
+The three-phase voltage source inverter (six-switch bridge) was simulated with three-phase SPWM:
+
+- Three reference sinusoids 120° phase-shifted, compared to a common triangular carrier
+- Line-to-line output voltages analyzed for THD and harmonic content
+- Suitable for three-phase AC motor drives and grid interconnection
+
+## Simulation Results
+
+Both inverter topologies were fully simulated in **PLECS** and **MATLAB/Simulink**:
+- Gate signal waveforms for all switches
+- Phase voltage and line-to-line voltage waveforms
+- FFT spectrum analysis showing harmonic distribution
+- THD comparison at different modulation indices and carrier frequency ratios
+- Filter design for target THD specification
+
+## Technologies Used
+
+- **PLECS** — Primary switched-mode power electronics simulation
+- **MATLAB** — FFT analysis, THD calculations, and reference waveform generation
+- **LTspice** — Cross-verification of single-phase circuit behavior
+
+## Key Takeaways
+
+Increasing the frequency ratio (higher carrier frequency) shifts harmonics to higher frequencies, making output filtering easier and reducing filter component size — at the cost of higher switching losses. The three-phase topology achieves inherently lower THD than single-phase due to harmonic cancellation in the balanced system.

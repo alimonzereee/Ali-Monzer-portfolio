@@ -1,0 +1,63 @@
+---
+title: "EMC Filter Design for AC Motor Inverter"
+publishedAt: "2025-05-01"
+summary: "Design and analysis of electromagnetic compatibility (EMC) filters to suppress conducted emissions in an AC motor variable frequency drive inverter."
+images:
+  - "/images/projects/project-01/712cuI8-3eL._AC_UF894,1000_QL80_.jpg"
+team:
+  - name: "Ali Nemer Monzer"
+    role: "Power Electronics & EMC Engineer"
+    avatar: "/images/projects/project-01/Image_Editor7-1.jpg"
+    linkedIn: "https://www.linkedin.com/in/ali-monzer-5b9635282"
+---
+
+## Overview
+
+This project focuses on the design of **Electromagnetic Compatibility (EMC) filters** for an AC motor variable frequency drive (VFD) inverter. Switching-mode power converters generate significant high-frequency conducted and radiated electromagnetic interference (EMI) due to fast switching transitions (high dV/dt and dI/dt). Meeting international EMC standards (CISPR 11, IEC 61800-3) requires effective filtering at the inverter's AC input to prevent interference from propagating into the power grid.
+
+## EMC Background
+
+Inverter-generated noise propagates through two primary paths:
+
+- **Differential mode (DM) noise** — Flows between the line conductors; caused by switching current ripple
+- **Common mode (CM) noise** — Flows between line conductors and earth ground; caused by parasitic capacitance from switches to the heatsink/chassis (stray capacitance to ground)
+
+Each noise mode requires distinct filter components to attenuate effectively.
+
+## Filter Architecture
+
+The EMC filter combines differential mode and common mode filter stages:
+
+**Differential Mode Filter:**
+- X-capacitors (line-to-line) to provide a low-impedance path for DM noise current
+- Series DM inductors to attenuate high-frequency DM current
+
+**Common Mode Filter:**
+- Common mode choke (CM inductor with coupled windings on a shared toroidal core) — presents high impedance to CM currents while having negligible impedance to differential load current
+- Y-capacitors (line-to-earth) to divert CM noise current to ground
+
+## Design Procedure
+
+1. **Noise measurement baseline** — Simulated conducted emission spectrum of unfiltered inverter to identify dominant frequency range and magnitude of interference
+2. **Required attenuation** — Calculated insertion loss needed to meet CISPR limit lines at each frequency
+3. **Filter component sizing** — Determined L and C values to achieve target attenuation at the critical frequency, considering impedance of the power source (LISN — Line Impedance Stabilization Network)
+4. **Resonance check** — Verified no harmful resonance peaks within the operating frequency range
+5. **Filter simulation** — Full system simulation with filter inserted between LISN and inverter
+
+## Simulation & Analysis
+
+The filter was designed and simulated in **LTspice**:
+- Conducted emission spectrum before and after filter insertion
+- Insertion loss vs. frequency characteristic of the filter network
+- CM and DM attenuation curves
+- Time-domain verification of filtered waveforms
+
+## Technologies Used
+
+- **LTspice** — Full circuit simulation including LISN model and filter network
+- **MATLAB** — Frequency-domain analysis and insertion loss calculations
+- **Altium Designer** — PCB layout considerations for filter component placement to minimize parasitic inductance
+
+## Key Takeaways
+
+EMC filter design requires careful separation of common mode and differential mode noise paths. PCB layout is as critical as component selection — improper grounding, long traces, or poor capacitor placement can dramatically reduce filter effectiveness. The project demonstrated the direct link between inverter switching speed, stray capacitance, and the resulting CM noise signature.
